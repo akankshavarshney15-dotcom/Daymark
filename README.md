@@ -16,6 +16,23 @@ A minimal and thoughtfully designed productivity planner that helps you organize
 - **Priority & Categories:** Organize tasks by priority and category.
 
 ## 🖥️ Screenshots
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### My Day
+![My Day](screenshots/my-day.png)
+
+### Calendar
+![Calendar](screenshots/calendar.png)
+
+### Weekly Progress
+![Weekly Progress](screenshots/weekly-progress.png)
+
+### Weekly Progress Details
+![Weekly Progress Details](screenshots/weekly-progress-details.png)
+
+### Focus Room
+![Focus Room](screenshots/focus-room.png)
 
 ### 1. Dashboard
 ![Daymark Dashboard](screenshots/dashboard.png)
