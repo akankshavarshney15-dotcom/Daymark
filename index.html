@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f4ed">
+
+    <title>Daymark | Your Personal Planner</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="fa-solid fa-seedling"></i>
+            </div>
+            <span>daymark<span class="brand-dot">.</span></span>
+        </div>
+
+        <p class="nav-label">WORKSPACE</p>
+
+        <nav class="sidebar-nav">
+            <button class="nav-item active" data-view="dashboard">
+                <i class="fa-solid fa-house"></i>
+                Overview
+            </button>
+
+            <button class="nav-item" data-view="today">
+                <i class="fa-regular fa-sun"></i>
+                My Day
+            </button>
+
+            <button class="nav-item" data-view="calendar">
+                <i class="fa-regular fa-calendar"></i>
+                Calendar
+            </button>
+
+            <button class="nav-item" data-view="week">
+                <i class="fa-solid fa-chart-column"></i>
+                Weekly Progress
+            </button>
+
+            <button class="nav-item" data-view="focus">
+                <i class="fa-regular fa-clock"></i>
+                Focus Room
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-note">
+                <i class="fa-solid fa-leaf"></i>
+                <h4>Grow at your own pace.</h4>
+                <p>Consistency matters more than perfection.</p>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">A</div>
+                <div>
+                    <strong>My Workspace</strong>
+                    <small>Personal planner</small>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <button class="menu-toggle" id="menu-toggle"
+            aria-label="Toggle menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div>
+                <p class="eyebrow">YOUR SPACE. YOUR PACE.</p>
+                <h1 id="greeting">Good day!</h1>
+                <p class="date-display" id="current-date"></p>
+            </div>
+
+            <button class="theme-btn" id="theme-toggle"
+            aria-label="Toggle theme">
+                <i class="fa-regular fa-moon"></i>
+            </button>
+
+        </header>
+
+
+        <!-- DASHBOARD VIEW -->
+        <section class="view active" id="dashboard-view">
+
+            <div class="hero-card">
+                <div class="hero-content">
+                    <p class="eyebrow">A FRESH START</p>
+                    <h2>Make room for<br>what <em>matters.</em></h2>
+                    <p>Little progress is still progress. Let's make today count.</p>
+                </div>
+
+                <div class="hero-art">
+                    <i class="fa-solid fa-seedling"></i>
+                    <span>✦</span>
+                </div>
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Total tasks</span>
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h2 id="total-count">0</h2>
+                    <p>Everything on your plate</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>In progress</span>
+                        <i class="fa-solid fa-hourglass-half"></i>
+                    </div>
+                    <h2 id="pending-count">0</h2>
+                    <p>One step at a time</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Completed</span>
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h2 id="completed-count">0</h2>
+                    <p>Look how far you've come!</p>
+                </div>
+
+            </div>
+
+
+            <div class="progress-card">
+                <div class="progress-heading">
+                    <div>
+                        <h3>Today's progress</h3>
+                        <p>Every completed task is a little win.</p>
+                    </div>
+                    <strong id="progress-percent">0%</strong>
+                </div>
+
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+
+
+            <!-- ADD TASK -->
+            <section class="panel add-panel" id="add-task-panel">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">GET THINGS DONE</p>
+                        <h2>Add a task ✳</h2>
+                    </div>
+                </div>
+
+                <form id="task-form">
+
+                    <div class="form-group">
+                        <label for="task-input">What needs to be done?</label>
+                        <input type="text" id="task-input"
+                        placeholder="e.g. Finish my assignment..."
+                        maxlength="100" required>
+                    </div>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="task-category">Category</label>
+                            <select id="task-category">
+                                <option value="College">College</option>
+                                <option value="Personal">Personal</option>
+                                <option value="Work">Work</option>
+                                <option value="Health">Health</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="task-priority">Priority</label>
+                            <select id="task-priority">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="task-date">Due date</label>
+                        <input type="date" id="task-date">
+                    </div>
+
+                    <button type="submit" class="primary-btn">
+                        <i class="fa-solid fa-plus"></i>
+                        Add to my list
+                    </button>
+
+                </form>
+            </section>
+
+
+            <!-- MY TASK LIST -->
+            <section class="panel task-panel">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">YOUR DAY, ORGANIZED</p>
+                        <h2>My task list</h2>
+                    </div>
+                    <span class="task-total" id="list-count">0 tasks</span>
+                </div>
+
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="search-input"
+                    placeholder="Find something...">
+                </div>
+
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn" data-filter="completed">Done</button>
+                </div>
+
+                <div id="task-list" class="task-list"></div>
+
+                <div id="empty-state" class="empty-state">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    <h3>Nothing on your list yet.</h3>
+                    <p>Add a task and give your day a little direction.</p>
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- MY DAY VIEW -->
+        <section class="view" id="today-view">
+
+            <div class="page-heading">
+                <p class="eyebrow">A LITTLE PLAN GOES A LONG WAY</p>
+                <h2>My Day ☀</h2>
+                <p>Your tasks, right here, right now.</p>
+            </div>
+
+            <div class="stats-grid compact-stats">
+                <div class="stat-card">
+                    <span>Due today</span>
+                    <h2 id="today-count">0</h2>
+                </div>
+                <div class="stat-card">
+                    <span>Overdue</span>
+                    <h2 id="overdue-count">0</h2>
+                </div>
+                <div class="stat-card">
+                    <span>Upcoming</span>
+                    <h2 id="upcoming-count">0</h2>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="section-heading">
+                    <h2>Today's tasks</h2>
+                </div>
+                <div id="today-list" class="task-list"></div>
+                <div id="today-empty" class="empty-state">
+                    <i class="fa-regular fa-sun"></i>
+                    <h3>A clear day ahead!</h3>
+                    <p>No tasks due today.</p>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="section-heading">
+                    <h2>Overdue tasks</h2>
+                </div>
+                <div id="overdue-list" class="task-list"></div>
+                <div id="overdue-empty" class="empty-state">
+                    <p>Nothing overdue. Nice work!</p>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="section-heading">
+                    <h2>Coming up</h2>
+                </div>
+                <div id="upcoming-list" class="task-list"></div>
+                <div id="upcoming-empty" class="empty-state">
+                    <p>No upcoming tasks.</p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- CALENDAR VIEW -->
+        <section class="view" id="calendar-view">
+
+            <div class="page-heading">
+                <p class="eyebrow">SEE THE BIGGER PICTURE</p>
+                <h2>Your Calendar</h2>
+                <p>Every date has room for a new beginning.</p>
+            </div>
+
+            <div class="panel calendar-panel">
+
+                <div class="calendar-header">
+                    <button id="prev-month" class="icon-btn"
+                    aria-label="Previous month">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <h2 id="calendar-month"></h2>
+
+                    <button id="next-month" class="icon-btn"
+                    aria-label="Next month">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="calendar-weekdays">
+                    <span>Sun</span>
+                    <span>Mon</span>
+                    <span>Tue</span>
+                    <span>Wed</span>
+                    <span>Thu</span>
+                    <span>Fri</span>
+                    <span>Sat</span>
+                </div>
+
+                <div id="calendar-grid" class="calendar-grid"></div>
+
+                <div class="calendar-legend">
+                    <span><i class="dot today-dot"></i> Today</span>
+                    <span><i class="dot task-dot"></i> Has tasks</span>
+                    <span><i class="dot selected-dot"></i> Selected</span>
+                </div>
+
+            </div>
+
+            <div class="panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">YOUR SELECTED DATE</p>
+                        <h2 id="selected-date-title">Tasks</h2>
+                    </div>
+                </div>
+
+                <div id="calendar-task-list" class="task-list"></div>
+
+                <div id="calendar-empty" class="empty-state">
+                    <p>No tasks for this date.</p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- WEEKLY PROGRESS VIEW -->
+        <section class="view" id="week-view">
+
+            <div class="page-heading">
+                <p class="eyebrow">SMALL STEPS ADD UP</p>
+                <h2>Weekly Progress</h2>
+                <p>Take a moment to appreciate your efforts.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span>Tasks created</span>
+                    <h2 id="week-created">0</h2>
+                </div>
+                <div class="stat-card">
+                    <span>Tasks completed</span>
+                    <h2 id="week-completed">0</h2>
+                </div>
+                <div class="stat-card">
+                    <span>Completion rate</span>
+                    <h2 id="week-rate">0%</h2>
+                </div>
+            </div>
+
+            <div class="panel chart-panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">LAST SEVEN DAYS</p>
+                        <h2>Your activity</h2>
+                    </div>
+                </div>
+
+                <div id="weekly-chart" class="weekly-chart"></div>
+                <p class="chart-note">
+                    Based on the date each task was marked complete.
+                </p>
+            </div>
+
+            <div class="panel">
+                <div class="section-heading">
+                    <h2>A note to yourself</h2>
+                </div>
+                <p class="reflection">
+                    Progress isn't always about doing more. Sometimes,
+                    it's about showing up and doing what you can.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- FOCUS TIMER VIEW -->
+        <section class="view" id="focus-view">
+
+            <div class="page-heading">
+                <p class="eyebrow">SLOW DOWN. FOCUS. BEGIN.</p>
+                <h2>Focus Room</h2>
+                <p>One thing at a time. You've got this.</p>
+            </div>
+
+            <div class="panel focus-panel">
+
+                <div class="focus-modes">
+                    <button class="mode-btn active" data-minutes="25"
+                    data-mode="Focus">Focus</button>
+
+                    <button class="mode-btn" data-minutes="5"
+                    data-mode="Short Break">Short break</button>
+
+                    <button class="mode-btn" data-minutes="15"
+                    data-mode="Long Break">Long break</button>
+                </div>
+
+                <div class="timer-circle">
+                    <svg viewBox="0 0 220 220">
+                        <circle class="timer-bg" cx="110" cy="110" r="96"/>
+                        <circle class="timer-progress" id="timer-progress"
+                        cx="110" cy="110" r="96"/>
+                    </svg>
+
+                    <div class="timer-content">
+                        <p id="timer-mode">FOCUS SESSION</p>
+                        <h1 id="timer-display">25:00</h1>
+                        <span id="timer-status">Ready when you are.</span>
+                    </div>
+                </div>
+
+                <div class="timer-controls">
+                    <button class="primary-btn" id="timer-start">
+                        <i class="fa-solid fa-play"></i>
+                        Start
+                    </button>
+
+                    <button class="secondary-btn" id="timer-reset">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Reset
+                    </button>
+                </div>
+
+                <p class="session-count">
+                    Focus sessions completed:
+                    <strong id="session-count">0</strong>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <footer class="footer">
+            <p>Made with <span>♥</span> by Akanksha Varshney</p>
+            <p>Daymark © 2026</p>
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- EDIT MODAL -->
+<div class="modal" id="edit-modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>Edit task</h2>
+            <button id="close-modal" type="button"
+            aria-label="Close">&times;</button>
+        </div>
+
+        <form id="edit-form">
+
+            <input type="hidden" id="edit-task-id">
+
+            <div class="form-group">
+                <label for="edit-task-input">Task name</label>
+                <input type="text" id="edit-task-input"
+                maxlength="100" required>
+            </div>
+
+            <div class="form-group">
+                <label for="edit-category">Category</label>
+                <select id="edit-category">
+                    <option value="College">College</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Work">Work</option>
+                    <option value="Health">Health</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="edit-priority">Priority</label>
+                <select id="edit-priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="edit-date">Due date</label>
+                <input type="date" id="edit-date">
+            </div>
+
+            <button type="submit" class="primary-btn">
+                Save changes
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
