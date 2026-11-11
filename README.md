@@ -34,21 +34,6 @@ A minimal and thoughtfully designed productivity planner that helps you organize
 ### Focus Room
 ![Focus Room](screenshots/focus-room.png)
 
-### 1. Dashboard
-![Daymark Dashboard](screenshots/dashboard.png)
-
-### 2. My Day Planner
-![My Day Planner](screenshots/my-day.png)
-
-### 3. Calendar
-![Daymark Calendar](screenshots/calendar.png)
-
-### 4. Weekly Progress
-![Weekly Progress](screenshots/weekly-progress.png)
-
-### 5. Focus Room
-![Focus Room](screenshots/focus-room.png)
-
 ## 🛠️ Technologies Used
 
 - HTML5 – Structure
